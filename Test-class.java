@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Demo {
 
     public static void main(String[] args) {
-
+        String str = "test123";
     	int year;
     	Scanner scan = new Scanner(System.in);
     	System.out.println("Enter any Year:");
