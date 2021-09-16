@@ -1,12 +1,10 @@
 import javalang
 
 def tokenize(sourceCodeDirectory):
-    with open(sourceCodeDirectory) as sourceCode:
-        tokensList = []
-        for line in sourceCode:
-            tokens = list(javalang.tokenizer.tokenize(line))
-            for token in tokens:
-                tokensList.append(token)
+    sourceCode = open('Test-class.java', 'r').read()
+    tokensList = list(javalang.tokenizer.tokenize(sourceCode))
     return tokensList
 
 test = tokenize("Test-class.java")
+for t in test:
+    print(t)
