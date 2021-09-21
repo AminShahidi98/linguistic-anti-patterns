@@ -1,1 +1,3 @@
-25 Shahrivar ---> Read this article: A New Family of Software Anti-Patterns Linguistic Anti-Patterns
+25 Shahrivar ---> Read this article: A New Family of Software Anti-Patterns Linguistic Anti-Patterns. ---> Done
+29 Shahrivar ---> Create two classes for functions and variables. ---> Rejected
+31 sharivar ---> Create classes for antipatterns.
