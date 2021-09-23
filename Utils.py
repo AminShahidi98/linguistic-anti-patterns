@@ -1,4 +1,7 @@
 import javalang
+from wordsegment import segment, load
+load()
+
 from Models import GetMethodLAP
 
 def tokenize(sourceCodeDirectory):
@@ -18,10 +21,5 @@ def findMethodDeclarations(sourceCodeDirectory):
         methodDeclarations.append(node)
     return methodDeclarations
 
-'''
-test = findMethodDeclarations("Demo.java")
-for t in test:
-    tt = GetMethodLAP(t, "test123", "nothing right now")
-    print(tt)
-
-'''
+def separateStringToWords(string):
+    return segment(string)
