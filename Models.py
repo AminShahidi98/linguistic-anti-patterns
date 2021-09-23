@@ -3,5 +3,6 @@ class GetMethodLAP():
         self.node = node
         self.LAPType = LAPType
         self.describtion = describtion
+        
     def __str__(self):
         return "GetMethodLAP(type = " + self.LAPType + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ")"
