@@ -23,3 +23,18 @@ def findMethodDeclarations(sourceCodeDirectory):
 
 def separateStringToWords(string):
     return segment(string)
+
+def returnGetMethodSmell(node):
+    lowerCasedName = separateStringToWords(node.name)[0].lower()
+    if lowerCasedName == 'get':
+        return 'getMethod'
+    elif lowerCasedName[0:3] == 'get':
+        return 'maybeGetMethod'
+    else:
+        return 'notGetMethod'
+
+nodes = findMethodDeclarations("Demo.java")
+node = nodes[0]
+
+test = returnGetMethodSmell(node)
+print(test)
