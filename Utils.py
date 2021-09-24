@@ -26,6 +26,8 @@ def separateStringToWords(string):
 
 def returnGetMethodSmell(node):
     lowerCasedName = separateStringToWords(node.name)[0].lower()
+    if len(lowerCasedName) < 3:
+        return 'notGetMethod'
     if lowerCasedName == 'get':
         return 'getMethod'
     elif lowerCasedName[0:3] == 'get':
@@ -33,8 +35,33 @@ def returnGetMethodSmell(node):
     else:
         return 'notGetMethod'
 
+def returnIsMethodSmell(node):
+    lowerCasedName = separateStringToWords(node.name)[0].lower()
+    if len(lowerCasedName) < 2:
+        return 'notIsMethod'
+    if lowerCasedName == 'is':
+        return 'isMethod'
+    elif lowerCasedName[0:2] == 'is':
+        return 'maybeIsMethod'
+    else:
+        return 'notIsMethod'
+
+def returnSetMethodSmell(node):
+    lowerCasedName = separateStringToWords(node.name)[0].lower()
+    if len(lowerCasedName) < 3:
+        return 'notSetMethod'
+    if lowerCasedName == 'set':
+        return 'setMethod'
+    elif lowerCasedName[0:3] == 'set':
+        return 'maybeSetMethod'
+    else:
+        return 'notSetMethod'
+
+
+'''
 nodes = findMethodDeclarations("Demo.java")
 node = nodes[0]
 
-test = returnGetMethodSmell(node)
+test = returnIsMethodSmell(node)
 print(test)
+'''
