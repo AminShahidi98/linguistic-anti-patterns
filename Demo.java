@@ -3,12 +3,14 @@ import java.util.Scanner;
 public class Demo {
 
     static String getattrmyMethod() {
-        System.out.println("I just got executed!");
         return("wew");
     }
 
     public static void main(String[] args) {
-        myMethod();
+        int a;
+        a = a+5;
+        System.out.println(a);
+        getattrmyMethod();
         
     }
 }
