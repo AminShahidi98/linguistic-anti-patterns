@@ -3,13 +3,11 @@ import java.util.Scanner;
 public class Demo {
 
     static String getattrmyMethod() {
-        return("wew");
+        int a;
+        a = 5;
     }
 
     public static void main(String[] args) {
-        int a;
-        a = a+5;
-        System.out.println(a);
         getattrmyMethod();
         
     }

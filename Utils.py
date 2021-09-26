@@ -2,8 +2,6 @@ import javalang
 from wordsegment import segment, load
 load()
 
-from Models import GetMethodLAP
-
 def tokenize(sourceCodeDirectory):
     sourceCode = open(sourceCodeDirectory, 'r').read()
     tokensList = list(javalang.tokenizer.tokenize(sourceCode))
@@ -56,12 +54,3 @@ def returnSetMethodSmell(node):
         return 'maybeSetMethod'
     else:
         return 'notSetMethod'
-
-
-'''
-nodes = findMethodDeclarations("Demo.java")
-node = nodes[0]
-
-test = returnIsMethodSmell(node)
-print(test)
-'''
