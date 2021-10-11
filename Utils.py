@@ -1,6 +1,8 @@
 import javalang
 from wordsegment import segment, load
 load()
+import inflect
+inflect = inflect.engine()
 
 def tokenize(sourceCodeDirectory):
     sourceCode = open(sourceCodeDirectory, 'r').read()
@@ -54,3 +56,9 @@ def returnSetMethodSmell(node):
         return 'maybeSetMethod'
     else:
         return 'notSetMethod'
+
+def isPlural(word):
+    if inflect.singular_noun(word) == False:
+        return False
+    else:
+        return True

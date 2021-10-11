@@ -15,6 +15,7 @@ def returnGetLAPType(node):
             if type(i) == javalang.tree.ReturnStatement:
                 return(Lap(1))
         return Lap(7)
+    return Lap(0)
 
 def returnIsLAPType(node):
     flag = 0
@@ -28,6 +29,7 @@ def returnIsLAPType(node):
                 flag = 1
         if flag == 0:
             return Lap(8)
+    return Lap(0)
 
 def returnSetLAPType(node):
     if len(node.body) == 0:
@@ -35,4 +37,7 @@ def returnSetLAPType(node):
     for i in node.body:
         if type(i) == javalang.tree.ReturnStatement:
             return Lap(3)
+    return Lap(0)
 
+def returnIfType4LAP(node):
+    

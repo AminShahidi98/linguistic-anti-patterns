@@ -1,6 +1,10 @@
 import enum
 
+pluralDataTypes = ['String', 'Array']
+singularDataTypes = ['boolean', 'char', 'byte', 'short', 'int', 'long', 'float', 'double']
+
 class Lap(enum.Enum):
+    noLAP = 0
     getMoreThanAccessor = 1
     isReturnsMoreThanBoolean = 2
     setReturns = 3
@@ -28,17 +32,27 @@ class GetMethodLAP():
         return "GetMethodLAP(type = " + self.LAPType + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ", Certainty = " + str(self.Certainty) + ")"
 
 class IsMethodLAP():
-    def __init__(self, node, LAPType, describtion):
+    def __init__(self, node, LAPType, describtion, Certainty):
         self.node = node
         self.LAPType = LAPType
         self.describtion = describtion
+        self.Certainty = Certainty
     def __str__(self):
         return "IsMethodLAP(type = " + self.LAPType + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ", Certainty = " + str(self.Certainty) + ")"
 
 class SetMethodLAP():
+    def __init__(self, node, LAPType, describtion, Certainty):
+        self.node = node
+        self.LAPType = LAPType
+        self.describtion = describtion
+        self.Certainty = Certainty
+    def __str__(self):
+        return "SetMethodLAP(type = " + self.LAPType + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ", Certainty = " + str(self.Certainty) + ")"
+
+class ExpectSingleButCollectionLAP():
     def __init__(self, node, LAPType, describtion):
         self.node = node
         self.LAPType = LAPType
         self.describtion = describtion
     def __str__(self):
-        return "SetMethodLAP(type = " + self.LAPType + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ", Certainty = " + str(self.Certainty) + ")"
+        return "ExpectSingleButCollectionLAP(type = " + self.LAPType + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ")"
