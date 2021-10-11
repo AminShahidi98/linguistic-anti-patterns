@@ -1,7 +1,7 @@
 import enum
 
-pluralDataTypes = ['String', 'Array']
-singularDataTypes = ['boolean', 'char', 'byte', 'short', 'int', 'long', 'float', 'double']
+pluralDataTypes = ['Array']
+singularDataTypes = ['boolean', 'char', 'byte', 'short', 'int', 'long', 'float', 'double', 'void', 'String']
 
 class Lap(enum.Enum):
     noLAP = 0
@@ -21,6 +21,10 @@ class Lap(enum.Enum):
     saysManyButContainsOne = 14
     nameAndTypeOpposite = 15
     commentAndTypeOpposite = 16
+
+class customReturnType():
+    def __init__(self, name):
+        self.name = 'void'
 
 class GetMethodLAP():
     def __init__(self, node, LAPType, describtion, Certainty):

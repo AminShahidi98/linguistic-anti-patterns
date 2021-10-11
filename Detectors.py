@@ -40,4 +40,21 @@ def returnSetLAPType(node):
     return Lap(0)
 
 def returnIfType4LAP(node):
+    lowerCasedName = separateStringToWords(node.name)[0].lower()
+    keyNoun = lowerCasedName[len(lowerCasedName) - 1]
+    if isPlural(keyNoun):
+        print('is plural')
+        return Lap(o)
+    else:
+        if keyNoun in singularDataTypes:
+            if node.return_type.name in pluralDataTypes:
+                return Lap(4)
+            else:
+                return Lap(0)
+        else:
+            if node.return_type.name in pluralDataTypes:
+                return Lap(4)
+            else:
+                return Lap(0)
+
     

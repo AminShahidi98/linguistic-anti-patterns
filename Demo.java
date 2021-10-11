@@ -2,10 +2,9 @@ import java.util.Scanner;
 //test-test-test-test
 public class Demo {
    
-    }
 
 
-    static boolean setmyMethod() {
+    static Array setmyMethod() {
         int a;
         a = 5;
         return(true);

@@ -1,3 +1,4 @@
+from Models import *
 import javalang
 from wordsegment import segment, load
 load()
@@ -18,6 +19,9 @@ def findMethodDeclarations(sourceCodeDirectory):
     methodDeclarations = []
     tree = parse(sourceCodeDirectory)
     for path, node in tree.filter(javalang.tree.MethodDeclaration):
+        if node.return_type == None:
+            void = customReturnType('void')
+            node.return_type = void
         methodDeclarations.append(node)
     return methodDeclarations
 
