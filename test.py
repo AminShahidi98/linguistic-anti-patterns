@@ -12,5 +12,5 @@ void = Void('void')
 test = findMethodDeclarations("Demo.java")
 for t in test:
     print(t.name)
-    print(returnIfType4LAP(t))
+    print(t.body)
     print("****************************")

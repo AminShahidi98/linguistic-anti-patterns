@@ -57,4 +57,9 @@ def returnIfType4LAP(node):
             else:
                 return Lap(0)
 
+def returnIfType5LAP(node):
+    if node.body == []:
+        return Lap(5)
+    else:
+        return Lap(0)
     
