@@ -9,8 +9,8 @@ class Void():
         self.name = 'void'
 void = Void('void')
 
-test = findMethodDeclarations("Demo.java")
-for t in test:
+tree = parse("Demo.java")
+for path, node in tree:
     print(t.name)
     print(t.body)
     print("****************************")
