@@ -68,3 +68,12 @@ class NotImplementedLAP():
         self.describtion = describtion
     def __str__(self):
         return "NotImplementedLAP(type = " + self.LAPType + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ")"
+
+class saysOneButContainsManyLAP():
+    def __init__(self, parentNode, node, LAPType, describtion):
+        self.parentNode = parentNode
+        self.node = node
+        self.LAPType = LAPType
+        self.describtion = describtion
+    def __str__(self):
+        return "saysOneButContainsManyLAP(type = " + self.LAPType + ", name = " + self.node.name + ", line = " + str(self.parentNode.position.line) + ")"

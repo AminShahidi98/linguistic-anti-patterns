@@ -62,4 +62,24 @@ def returnIfType5LAP(node):
         return Lap(5)
     else:
         return Lap(0)
-    
+
+def returnIfType12or14LAP(parentNode, node):
+    nodeSplitedName = separateStringToWords(node.name)
+    lastIndex = len(nodeSplitedName) - 1
+    if isPlural(nodeSplitedName[lastIndex]):
+        if parentNode.type.name in pluralDataTypes:
+            return Lap(0)
+        else:
+            return Lap(14)
+    elif not isPlural(nodeSplitedName[lastIndex]):
+        if parentNode.type.name in pluralDataTypes:
+            return lap(12)
+        else:
+            return Lap(0)
+    elif nodeSplitedName[lastIndex].lower() in ['list', 'array', 'set', 'tuple']:
+        if parentNode.type.name in pluralDataTypes:
+            return Lap(0)
+        else:
+            return Lap(14)
+    else:
+        return lap(0)

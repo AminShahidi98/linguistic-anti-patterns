@@ -66,3 +66,29 @@ def isPlural(word):
         return False
     else:
         return True
+
+def returnVariableDeclarators(sourceCodeDirectory):
+    globalVariablesList = []
+    localVariablesList = []
+    tree = parse(sourceCodeDirectory)
+    for path, node in tree.filter(javalang.tree.FieldDeclaration):
+        for p,  v in node.filter(javalang.tree.VariableDeclarator):
+            globalVariablesList.append((v.name, node.position.line, node.type.name, 'global'))
+    
+    tree = parse(sourceCodeDirectory)
+    for path, node in tree.filter(javalang.tree.LocalVariableDeclaration):
+        for p, v in node.filter(javalang.tree.VariableDeclarator):
+            localVariablesList.append((v.name, node.position.line, node.type.name, 'local'))
+    return (globalVariablesList, localVariablesList)
+
+def returnVariableDeclarations(sourceCodeDirectory):
+    globalVariablesList = []
+    localVariablesList = []
+    tree = parse(sourceCodeDirectory)
+    for path, node in tree.filter(javalang.tree.FieldDeclaration):
+        globalVariablesList.append(node)
+    
+    tree = parse(sourceCodeDirectory)
+    for path, node in tree.filter(javalang.tree.LocalVariableDeclaration):
+        localVariablesList.append(node)
+    return (globalVariablesList, localVariablesList)
