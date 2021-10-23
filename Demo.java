@@ -1,14 +1,15 @@
-import java.util.Scanner;
-//test-test-test-test
 public class Demo {
    
-    int lalator____hey = 67;
-
-    static Array setmyMethod() {
-    }
+    int x=6, i;
 
     public static void main(String[] args) {
-        setmyMethod();
-        int a=9;
+        String nbbbbbbbbbbbbbbbbbbbbbbbbb;
+        nbbbbbbbbbbbbbbbbbbbbbbbbb = "lalalaniiiiiiiiiiiiiiiiiii";
+    }
+
+    public void instanceMethode() {
+        int ssisisisisisisisisisisis = 9;
+        int ttttttuuuuuuuuuuuu;
+        ttttttuuuuuuuuuuuu = 98;
     }
 }
