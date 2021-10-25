@@ -1,14 +1,14 @@
 public class Demo {
    
-    int x=6, i;
+    int isChecked=6, i;
 
     public static void main(String[] args) {
-        String nbbbbbbbbbbbbbbbbbbbbbbbbb;
+        boolean boobes;
         nbbbbbbbbbbbbbbbbbbbbbbbbb = "lalalaniiiiiiiiiiiiiiiiiii";
     }
 
     public void instanceMethode() {
-        int ssisisisisisisisisisisis = 9;
+        boolean hasPayed = 9;
         int ttttttuuuuuuuuuuuu;
         ttttttuuuuuuuuuuuu = 98;
     }

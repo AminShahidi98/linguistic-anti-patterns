@@ -9,13 +9,15 @@ x = returnVariableDeclarations("Demo.java")
 for pn in x[0]:
     for n in pn.declarators:
         print(n)
-        print(returnIfType12or14LAP(pn,n))
+        print(pn.type.name)
+        print(returnIfType13LAP(pn,n))
         print("******************")
 
 for pn in x[1]:
     for n in pn.declarators:
         print(n)
-        print(returnIfType12or14LAP(pn,n))
+        print(pn.type.name)
+        print(returnIfType13LAP(pn,n))
         print("******************")
 
 '''
