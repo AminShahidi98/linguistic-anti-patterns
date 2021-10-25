@@ -83,3 +83,13 @@ def returnIfType12or14LAP(parentNode, node):
             return Lap(14)
     else:
         return lap(0)
+
+def returnIfType13LAP(parentNode, node):
+    nodeSplitedName = separateStringToWords(node.name)
+    if nodeSplitedName[0] in booleanSugestions:
+        if parentNode.type.name == 'boolean':
+            return Lap(0)
+        else:
+            return Lap(13)
+    else:
+        return Lap(0)
