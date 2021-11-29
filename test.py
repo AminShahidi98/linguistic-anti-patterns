@@ -1,15 +1,34 @@
 from Utils import *
 from Models import *
 from Detectors import *
+from Actuators import *
 import javalang
 import inflect
 
+test=['public static int testTestTest(int x) {', 'return x;', '}']
+a = insertMethodToTheEnd('Demo.java', test)
 
+'''
+tree = parse('Demo.java')
+for path, node in tree:
+    print(node)
+    print('************************************************************************************************')
+'''
+'''
+f = open('Demo.java', 'r')
+for i in f:
+    if i == '\n':
+        print('noneeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+    else:
+        print(i)
+'''
 
 '''
 x = findMethodDeclarations('Demo.java')
 for i in x:
-    print(i)
+    print(i.modifiers)
+    if 'static' in i.modifiers:
+        print("yes")
     print('**********************************************************')
 '''
 
