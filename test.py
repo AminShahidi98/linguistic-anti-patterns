@@ -5,6 +5,15 @@ import javalang
 import inflect
 
 
+
+'''
+x = findMethodDeclarations('Demo.java')
+for i in x:
+    print(i)
+    print('**********************************************************')
+'''
+
+'''
 x = returnVariableDeclarations("Demo.java")
 for pn in x[0]:
     for n in pn.declarators:
@@ -19,6 +28,7 @@ for pn in x[1]:
         print(pn.type.name)
         print(returnIfType13LAP(pn,n))
         print("******************")
+'''
 
 '''
 x = returnVariableDeclarations("Demo.java")

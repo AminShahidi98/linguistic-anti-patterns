@@ -1,15 +1,18 @@
 public class Demo {
    
-    int isChecked=6, i;
+    int isChecked=6;
+    static int isDobed=9;
 
     public static void main(String[] args) {
-        boolean boobes;
-        nbbbbbbbbbbbbbbbbbbbbbbbbb = "lalalaniiiiiiiiiiiiiiiiiii";
+        String noob = "lalalaniiiiiiiiiiiiiiiiiii";
+        System.out.println(noob);
+        isDobed = 8;
     }
 
     public void instanceMethode() {
-        boolean hasPayed = 9;
-        int ttttttuuuuuuuuuuuu;
-        ttttttuuuuuuuuuuuu = 98;
+        int tut;
+        tut = 98;
+        System.out.println(tut);
+        
     }
 }
