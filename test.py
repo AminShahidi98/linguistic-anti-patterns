@@ -5,9 +5,28 @@ from Actuators import *
 import javalang
 import inflect
 
+
+'''
+a = findMethodDeclarations('Demo.java')
+b = createGetMethodComplement('Demo.java', a[1])
+for i in b:
+    print(i)
+print("*************************************************")
+'''
+
+
+a = findMethodDeclarations('Demo.java')
+for x in a:
+    print(x.position)
+    print('********************************************')
+
+
+#insertGetMethodComplement('Demo.java')
+
+'''
 test=['public static int testTestTest(int x) {', 'return x;', '}']
 a = insertMethodToTheEnd('Demo.java', test)
-
+'''
 '''
 tree = parse('Demo.java')
 for path, node in tree:
