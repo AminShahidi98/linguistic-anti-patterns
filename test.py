@@ -5,21 +5,24 @@ from Actuators import *
 import javalang
 import inflect
 
+a = findMethodDeclarations('Demo.java')
+b = createGetMethodComplement('Demo.java', a[2])
+insertMethodToTheEnd('Demo.java', b)
+
 
 '''
 a = findMethodDeclarations('Demo.java')
-b = createGetMethodComplement('Demo.java', a[1])
+b = createGetMethodComplement('Demo.java', a[2])
 for i in b:
     print(i)
 print("*************************************************")
 '''
-
-
+'''
 a = findMethodDeclarations('Demo.java')
 for x in a:
     print(x.position)
     print('********************************************')
-
+'''
 
 #insertGetMethodComplement('Demo.java')
 

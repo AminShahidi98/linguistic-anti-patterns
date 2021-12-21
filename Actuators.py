@@ -15,6 +15,7 @@ def insertMethodToTheEnd(sourceCodeDirectory, methodCodeLinesList):
 
 def createGetMethodComplement(sourceCodeDirectory, getMethodNode):
     startLine = getMethodNode.position.line
+    startColumn = getMethodNode.position.column
     fileLinesList = []
     with open(sourceCodeDirectory) as file:
         for line in file:
@@ -22,7 +23,16 @@ def createGetMethodComplement(sourceCodeDirectory, getMethodNode):
     openCurlCount = 0
     closeCurlCount = 0
     complementCodeList = []
+    isFirstline = True
     for line in fileLinesList[startLine-1:]:
+        if isFirstline:
+            isFirstline = False
+            offset = []
+            for i in range(0, startColumn):
+                if line[i]=='{' or line[i]=='}':
+                    offset.append(i)
+            if len(offset) != 0:
+                line = line[max(offset)+1:]
         if '{' not in line and '}' not in line:
             complementCodeList.append(line)
             continue
@@ -38,7 +48,3 @@ def createGetMethodComplement(sourceCodeDirectory, getMethodNode):
                     complementCodeList.append(line[:charCount])
                     return complementCodeList
             complementCodeList.append(line)
-        
-
-                
-    

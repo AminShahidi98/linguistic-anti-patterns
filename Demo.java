@@ -15,5 +15,4 @@ public class Demo {
         isDobed *= d;
         return isDobed;
     }
-
 }
