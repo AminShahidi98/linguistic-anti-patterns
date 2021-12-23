@@ -2,13 +2,17 @@ from Utils import *
 from Models import *
 from Detectors import *
 from Actuators import *
+from Core import *
 import javalang
 import inflect
 
+print(createGetMethodComplementName('public static int getisDobed(int d) {'))
+
+'''
 a = findMethodDeclarations('Demo.java')
 b = createGetMethodComplement('Demo.java', a[2])
 insertMethodToTheEnd('Demo.java', b)
-
+'''
 
 '''
 a = findMethodDeclarations('Demo.java')

@@ -34,7 +34,7 @@ class GetMethodLAP():
         self.describtion = describtion
         self.Certainty = Certainty
     def __str__(self):
-        return "GetMethodLAP(type = " + self.LAPType + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ", Certainty = " + str(self.Certainty) + ")"
+        return "GetMethodLAP(type = " + str(self.LAPType) + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ", Certainty = " + str(self.Certainty) + ")"
 
 class IsMethodLAP():
     def __init__(self, node, LAPType, describtion, Certainty):
@@ -43,7 +43,7 @@ class IsMethodLAP():
         self.describtion = describtion
         self.Certainty = Certainty
     def __str__(self):
-        return "IsMethodLAP(type = " + self.LAPType + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ", Certainty = " + str(self.Certainty) + ")"
+        return "IsMethodLAP(type = " + str(self.LAPType) + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ", Certainty = " + str(self.Certainty) + ")"
 
 class SetMethodLAP():
     def __init__(self, node, LAPType, describtion, Certainty):
@@ -52,7 +52,7 @@ class SetMethodLAP():
         self.describtion = describtion
         self.Certainty = Certainty
     def __str__(self):
-        return "SetMethodLAP(type = " + self.LAPType + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ", Certainty = " + str(self.Certainty) + ")"
+        return "SetMethodLAP(type = " + str(self.LAPType) + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ", Certainty = " + str(self.Certainty) + ")"
 
 class ExpectSingleButCollectionLAP():
     def __init__(self, node, LAPType, describtion):
@@ -60,7 +60,7 @@ class ExpectSingleButCollectionLAP():
         self.LAPType = LAPType
         self.describtion = describtion
     def __str__(self):
-        return "ExpectSingleButCollectionLAP(type = " + self.LAPType + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ")"
+        return "ExpectSingleButCollectionLAP(type = " + str(self.LAPType) + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ")"
 
 class NotImplementedLAP():
     def __init__(self, node, LAPType, describtion):
@@ -68,7 +68,7 @@ class NotImplementedLAP():
         self.LAPType = LAPType
         self.describtion = describtion
     def __str__(self):
-        return "NotImplementedLAP(type = " + self.LAPType + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ")"
+        return "NotImplementedLAP(type = " + str(self.LAPType) + ", name = " + self.node.name + ", line = " + str(self.node.position.line) + ")"
 
 class saysOneButContainsManyLAP():
     def __init__(self, parentNode, node, LAPType, describtion):
@@ -77,4 +77,4 @@ class saysOneButContainsManyLAP():
         self.LAPType = LAPType
         self.describtion = describtion
     def __str__(self):
-        return "saysOneButContainsManyLAP(type = " + self.LAPType + ", name = " + self.node.name + ", line = " + str(self.parentNode.position.line) + ")"
+        return "saysOneButContainsManyLAP(type = " + str(self.LAPType) + ", name = " + self.node.name + ", line = " + str(self.parentNode.position.line) + ")"

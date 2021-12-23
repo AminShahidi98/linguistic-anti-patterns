@@ -48,3 +48,57 @@ def createGetMethodComplement(sourceCodeDirectory, getMethodNode):
                     complementCodeList.append(line[:charCount])
                     return complementCodeList
             complementCodeList.append(line)
+
+def createGetMethodComplementName(firstLine, lapObject, allMethodes):
+    spaceSeen = False
+    temp = ''
+    parenthesesIndex = 0
+    spaceSeenCounter = 0
+    for i in range(0, len(firstLine)):
+        if firstLine[i] == '(':
+            parenthesesIndex = i
+            break
+        elif firstLine[i] == ' ':
+            spaceSeen = True
+            spaceSeenCounter += 1
+        else:
+            if spaceSeen:
+                temp = firstLine[i]
+                spaceSeen = False
+                spaceSeenCounter = 0
+            else:
+                temp += firstLine[i]
+    newNameBasic = 'complement_' + lapObject.node.name
+    newName = newNameBasic
+    newNameIndex = 2
+    for i in allMethodes:
+        if i.name == newName:
+            newName = newNameBasic + '_' + str(newNameIndex)
+            newNameIndex += 1
+    firstLineComplement = firstLine[:parenthesesIndex-len(temp)-spaceSeenCounter] + newName + firstLine[parenthesesIndex:]
+    newFunctionView = newName + '('
+    for i in lapObject.node.parameters:
+        newFunctionView += i.name
+        newFunctionView += ', '
+    newFunctionView = newFunctionView[:len(newFunctionView)-2]
+    newFunctionView += ')'
+    return (firstLineComplement, newFunctionView)
+
+def createAndReplaceEditedFunction(sourceCodeDirectory, firstLine, newFunctionView, node, complementCodeList):
+    newFunction = ''
+    for i in firstLine:
+        if i != '{':
+            newFunction += i
+        else:
+            break
+    newFunction = newFunction + '{\n' + 'return ' + newFunctionView + ';\n' +'}'
+    fileLinesList = []
+    with open(sourceCodeDirectory) as file:
+        for line in file:
+            fileLinesList.append(line.rstrip('\n')) #Append without disturbing extra blank lines of readline() method.
+    for i in range(0, len(complementCodeList)):
+        fileLinesList.pop(node.position.line-1)
+    fileLinesList.insert(node.position.line-1, newFunction)
+    result = "\n".join(fileLinesList[:])
+    with open(sourceCodeDirectory, "w") as text_file:
+        text_file.write(result)

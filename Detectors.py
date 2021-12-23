@@ -44,7 +44,7 @@ def returnIfType4LAP(node):
     keyNoun = lowerCasedName[len(lowerCasedName) - 1]
     if isPlural(keyNoun):
         print('is plural')
-        return Lap(o)
+        return Lap(0)
     else:
         if keyNoun in singularDataTypes:
             if node.return_type.name in pluralDataTypes:
@@ -73,7 +73,7 @@ def returnIfType12or14LAP(parentNode, node):
             return Lap(14)
     elif not isPlural(nodeSplitedName[lastIndex]):
         if parentNode.type.name in pluralDataTypes:
-            return lap(12)
+            return Lap(12)
         else:
             return Lap(0)
     elif nodeSplitedName[lastIndex].lower() in ['list', 'array', 'set', 'tuple']:
@@ -82,7 +82,7 @@ def returnIfType12or14LAP(parentNode, node):
         else:
             return Lap(14)
     else:
-        return lap(0)
+        return Lap(0)
 
 def returnIfType13LAP(parentNode, node):
     nodeSplitedName = separateStringToWords(node.name)
