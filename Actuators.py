@@ -82,6 +82,8 @@ def createGetMethodComplementName(firstLine, lapObject, allMethodes):
         newFunctionView += ', '
     newFunctionView = newFunctionView[:len(newFunctionView)-2]
     newFunctionView += ')'
+    #print(firstLineComplement)#fist line of complement function
+    #print(newFunctionView)#the function call we put inside new function to call complement function
     return (firstLineComplement, newFunctionView)
 
 def createAndReplaceEditedFunction(sourceCodeDirectory, firstLine, newFunctionView, node, complementCodeList):

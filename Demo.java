@@ -22,4 +22,9 @@ public class Demo {
         return isDobed;
     }
 
+    public static int getyourDobed(int d, String star) {
+        isDobed *= d;
+        return isDobed;
+    }
+
 }
