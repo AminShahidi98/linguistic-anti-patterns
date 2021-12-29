@@ -3,6 +3,7 @@ public class Demo {
     int isChecked=6;
     static int isDobed=9;
     static int[] cv = {23, 34, 533};
+    int getMyFood = 3;
     
     public static void main(String[] args) {
         System.out.print(getisDobed(2, "iuh"));
@@ -12,12 +13,17 @@ public class Demo {
         System.out.print(m);
         return x;
     }
-    public static int getisDobed(int d, String star) {
+
+    public static void getMyFood(String star) {
+        System.out.print(star);
+    }
+
+    public static int setisDobed(int d) {
         isDobed *= d;
         return isDobed;
     }
 
-    public static int setisDobed(int d) {
+    public static int getisDobed(int d, String star) {
         isDobed *= d;
         return isDobed;
     }
@@ -26,5 +32,4 @@ public class Demo {
         isDobed *= d;
         return isDobed;
     }
-
 }

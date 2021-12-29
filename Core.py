@@ -5,6 +5,7 @@ from Actuators import *
 from Models import *
 import copy
 
+deleteNotImplementedMethods = str(input("Remove Not implemented methods too?(y/n): "))
 #we will stay at this loop till all the LAPs are eliminated.
 while True:
     sourceCodeDirectory = 'Demo.java'
@@ -63,19 +64,27 @@ while True:
             newLap = SetMethodLAP(sm, Lap(5), 'Not implemented condition', 1)
             LapType5s.append(newLap)
 
-    for l in LapType1s:
-        methods = findMethodDeclarations(sourceCodeDirectory)
-        lines = createGetMethodComplement(sourceCodeDirectory, l.node)
-        tempLines = copy.copy(lines)
-        tempFirstLine = tempLines[0]
-        temp = createGetMethodComplementName(lines[0], l, methods)
-        firstLine = temp[0]
-        lines[0] = firstLine
-        insertMethodToTheEnd(sourceCodeDirectory, lines)
-        createAndReplaceEditedFunction(sourceCodeDirectory, tempFirstLine, temp[1], l.node, tempLines)
-        break
-
-    if len(LapType1s)==0:
+    if len(LapType1s) != 0:
+        for l in LapType1s:
+            methods = findMethodDeclarations(sourceCodeDirectory)
+            lines = createGetMethodComplement(sourceCodeDirectory, l.node)
+            tempLines = copy.copy(lines)
+            tempFirstLine = tempLines[0]
+            temp = createGetMethodComplementName(lines[0], l, methods)
+            firstLine = temp[0]
+            lines[0] = firstLine
+            insertMethodToTheEnd(sourceCodeDirectory, lines)
+            createAndReplaceEditedFunction(sourceCodeDirectory, tempFirstLine, temp[1], l.node, tempLines)
+            break
+        continue
+    
+    if len(LapType7s) != 0:
+        for l in LapType7s:
+            print('***********************************')
+            renameMethodInPlace(sourceCodeDirectory, l)
+            break
+        continue
+    if len(LapType1s) == 0 and len(LapType7s) == 0:
         break
     
 

@@ -104,3 +104,16 @@ def createAndReplaceEditedFunction(sourceCodeDirectory, firstLine, newFunctionVi
     result = "\n".join(fileLinesList[:])
     with open(sourceCodeDirectory, "w") as text_file:
         text_file.write(result)
+
+def renameMethodInPlace(sourceCodeDirectory, lapObject):
+    startLine = lapObject.node.position.line
+    fileLinesList = []
+    with open(sourceCodeDirectory) as file:
+        for line in file:
+            fileLinesList.append(line.rstrip('\n')) #Append without disturbing extra blank lines of readline() method.
+    result = "\n".join(fileLinesList[:])
+    newMethodName = "calculateFor" + lapObject.node.name + '('
+    result = result.replace(lapObject.node.name + '(', newMethodName)
+    with open(sourceCodeDirectory, "w") as text_file:
+        text_file.write(result)
+
