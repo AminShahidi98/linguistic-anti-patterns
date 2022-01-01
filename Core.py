@@ -63,7 +63,8 @@ while True:
         elif returnSetLAPType(sm) == Lap(5):
             newLap = SetMethodLAP(sm, Lap(5), 'Not implemented condition', 1)
             LapType5s.append(newLap)
-
+    
+    #eliminating type 1 LAPs
     if len(LapType1s) != 0:
         for l in LapType1s:
             methods = findMethodDeclarations(sourceCodeDirectory)
@@ -78,13 +79,21 @@ while True:
             break
         continue
     
+    #eliminating type 7 LAPs
     if len(LapType7s) != 0:
         for l in LapType7s:
-            print('***********************************')
             renameMethodInPlace(sourceCodeDirectory, l)
             break
         continue
-    if len(LapType1s) == 0 and len(LapType7s) == 0:
+    
+    #eliminating type 5 LAPs
+    if len(LapType5s) != 0:
+        for l in LapType5s:
+            pass
+            break
+        continue
+
+    if len(LapType1s) == 0 and len(LapType7s) == 0 and len(LapType5s) == 0:
         break
     
 

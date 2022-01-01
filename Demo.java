@@ -32,4 +32,8 @@ public class Demo {
         isDobed *= d;
         return isDobed;
     }
+
+    public static void getTADA(String star) {
+        System.out.print(star);
+    }
 }
