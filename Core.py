@@ -86,14 +86,17 @@ while True:
             break
         continue
     
+    if deleteNotImplementedMethods:
     #eliminating type 5 LAPs
-    if len(LapType5s) != 0:
-        for l in LapType5s:
-            pass
+        if len(LapType5s) != 0:
+            for l in LapType5s:
+                removeMethod(sourceCodeDirectory, l)
+                break
+            continue
+
+    if deleteNotImplementedMethods:
+        if len(LapType1s) == 0 and len(LapType7s) == 0 and len(LapType5s) == 0:
             break
-        continue
-
-    if len(LapType1s) == 0 and len(LapType7s) == 0 and len(LapType5s) == 0:
-        break
-    
-
+    else:
+        if len(LapType1s) == 0 and len(LapType7s) == 0:
+            break

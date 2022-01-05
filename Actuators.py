@@ -117,3 +117,50 @@ def renameMethodInPlace(sourceCodeDirectory, lapObject):
     with open(sourceCodeDirectory, "w") as text_file:
         text_file.write(result)
 
+def removeMethod(sourceCodeDirectory, lapObject):
+    startLine = lapObject.node.position.line
+    startColumn = lapObject.node.position.column
+    fileLinesList = []
+    with open(sourceCodeDirectory) as file:
+        for line in file:
+            fileLinesList.append(line.rstrip('\n')) #Append without disturbing extra blank lines of readline() method.
+    openCurlCount = 0
+    closeCurlCount = 0
+    firstLine = True
+    endOfMethod = False
+    newFileLinesList = []
+    for l in fileLinesList[:startLine-1]:
+        newFileLinesList.append(l)
+    for line in fileLinesList[startLine-1:]:
+        if endOfMethod:
+            newFileLinesList.append(line)
+            continue
+        if firstLine:
+            firstLine = False
+            offset = []
+            for i in range(0, startColumn):
+                if line[i]=='{' or line[i]=='}':
+                    offset.append(i)
+            if len(offset) != 0:
+                newLine = line[:max(offset)+1]
+                newFileLinesList.append(newLine)
+        if '{' not in line and '}' not in line:
+            continue
+        else:     
+            charCount = 0
+            for c in line:
+                charCount += 1
+                if c == '{':
+                    openCurlCount += 1
+                elif c == '}':
+                    closeCurlCount += 1
+                if openCurlCount!=0 and closeCurlCount!=0 and openCurlCount==closeCurlCount:
+                    newLine = line[charCount:]
+                    newFileLinesList.append(newLine)
+                    endOfMethod = True
+                    break
+
+    result = "\n".join(newFileLinesList[:])
+    with open(sourceCodeDirectory, "w") as text_file:
+        text_file.write(result)
+        return 0
