@@ -78,14 +78,14 @@ while True:
     if len(LapType1s) != 0:
         for l in LapType1s:
             methods = findMethodDeclarations(sourceCodeDirectory)
-            lines = createGetMethodComplement(sourceCodeDirectory, l.node)
+            lines = createMethodComplement(sourceCodeDirectory, l.node)
             tempLines = copy.copy(lines)
             tempFirstLine = tempLines[0]
-            temp = createGetMethodComplementName(lines[0], l, methods)
+            temp = createMethodComplementName(lines[0], l, methods)
             firstLine = temp[0]
             lines[0] = firstLine
             insertMethodToTheEnd(sourceCodeDirectory, lines)
-            createAndReplaceEditedFunction(sourceCodeDirectory, tempFirstLine, temp[1], l.node, tempLines)
+            createAndReplaceEditedFunction(sourceCodeDirectory, tempFirstLine, temp[1], l.node, tempLines, False)
             break
         continue
     
@@ -99,15 +99,37 @@ while True:
     if deleteNotImplementedMethods:
     #eliminating type 5 LAPs
         if len(LapType5s) != 0:
-            print('yeeeeesss')
             for l in LapType5s:
                 removeMethodInPlace(sourceCodeDirectory, l)
                 break
             continue
+    
+     #eliminating type 2 LAPs
+    if len(LapType2s) != 0:
+        for l in LapType2s:
+            methods = findMethodDeclarations(sourceCodeDirectory)
+            lines = createMethodComplement(sourceCodeDirectory, l.node)
+            tempLines = copy.copy(lines)
+            tempFirstLine = tempLines[0]
+            temp = createMethodComplementName(lines[0], l, methods)
+            firstLine = temp[0]
+            #firstLine = firstLine.replace(l.node.return_type.name, "boolean", 1)
+            print(firstLine)
+            lines[0] = firstLine
+            insertMethodToTheEnd(sourceCodeDirectory, lines)
+            createAndReplaceEditedFunction(sourceCodeDirectory, tempFirstLine, temp[1], l.node, tempLines, True)
+            print("**")
+            print("**")
+            print("**")
+            print("**")
+            print("**")
+            print("**")
+            break
+        continue   
 
     if deleteNotImplementedMethods:
-        if len(LapType1s) == 0 and len(LapType7s) == 0 and len(LapType5s) == 0:
+        if len(LapType1s) == 0 and len(LapType7s) == 0 and len(LapType2s) == 0 and len(LapType5s) == 0:
             break
     else:
-        if len(LapType1s) == 0 and len(LapType7s) == 0:
+        if len(LapType1s) == 0 and len(LapType7s) == 0 and len(LapType2s) == 0:
             break

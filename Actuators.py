@@ -13,7 +13,7 @@ def insertMethodToTheEnd(sourceCodeDirectory, methodCodeLinesList):
     with open(sourceCodeDirectory, "w") as text_file:
         text_file.write(result)
 
-def createGetMethodComplement(sourceCodeDirectory, getMethodNode):
+def createMethodComplement(sourceCodeDirectory, getMethodNode):
     startLine = getMethodNode.position.line
     startColumn = getMethodNode.position.column
     fileLinesList = []
@@ -49,7 +49,7 @@ def createGetMethodComplement(sourceCodeDirectory, getMethodNode):
                     return complementCodeList
             complementCodeList.append(line)
 
-def createGetMethodComplementName(firstLine, lapObject, allMethodes):
+def createMethodComplementName(firstLine, lapObject, allMethodes):
     spaceSeen = False
     temp = ''
     parenthesesIndex = 0
@@ -86,14 +86,21 @@ def createGetMethodComplementName(firstLine, lapObject, allMethodes):
     #print(newFunctionView)#the function call we put inside new function to call complement function
     return (firstLineComplement, newFunctionView)
 
-def createAndReplaceEditedFunction(sourceCodeDirectory, firstLine, newFunctionView, node, complementCodeList):
+def createAndReplaceEditedFunction(sourceCodeDirectory, firstLine, newFunctionView, node, complementCodeList, replaceReturnType):
     newFunction = ''
     for i in firstLine:
         if i != '{':
             newFunction += i
         else:
             break
-    newFunction = newFunction + '{\n' + 'return ' + newFunctionView + ';\n' +'}'
+
+    if replaceReturnType:
+        newFunction = newFunction.replace(' ' + node.return_type.name, " boolean", 1)
+        #if node.return_type.dimensions == 'int'
+
+        newFunction = newFunction + '{\n' + 'return ' + newFunctionView + ';\n' +'}'
+    else: 
+        newFunction = newFunction + '{\n' + 'return ' + newFunctionView + ';\n' +'}'
     fileLinesList = []
     with open(sourceCodeDirectory) as file:
         for line in file:

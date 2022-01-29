@@ -8,34 +8,12 @@ public class Demo {
     public static void main(String[] args) {
 
     }
-    private static int[] isMethode(int[] x, String m) {
-        System.out.print(m);
-        return x;
-    }
 
-    public static void settestpy(String star) {
-    }
-
-    public static void getMyFood(String star) {
-        System.out.print(star);
-    }
-
-
-
-
-
-
-
-
-
-
-
-    
-    public static int setisDobed(int d) {
+    public static int isValid(int d) {
         isChecked = 5*6;
         String tafdo = "hello dear!";
         if (isChecked == 5) {
-            return 5 / 2;
+            return 5;
         }
         else if (isChecked == 4) {
             return isDobed;
@@ -46,33 +24,6 @@ public class Demo {
         else {
             return 0;
         }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    int isFalse = 1;
-
-    public static void getbaaasss(String star) {
-    }
-
-    public static int getisDobed(int d, String star) {
-        isDobed *= d;
-        return isDobed;
-    }
-
-    public static int getyourDobed(int d, String star) {
-        isDobed *= d;
-        return isDobed;
     }
 
 }

@@ -8,11 +8,7 @@ import inflect
 
 x = findMethodDeclarations('Demo.java')
 for i in x:
-    if i.name == "setisDobed":
-        statements = i.body[2].then_statement.statements
-        for s in statements:
-            if isinstance(s, javalang.tree.ReturnStatement):
-                print(s)
+    print(type(i.return_type.dimensions))
 
 #"<class 'javalang.tree.ReturnStatement'>"
 #"<class 'javalang.tree.IfStatement'>"

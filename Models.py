@@ -26,6 +26,7 @@ class Lap(enum.Enum):
 class customReturnType():
     def __init__(self, name):
         self.name = 'void'
+        self.dimensions = []
 
 class GetMethodLAP():
     def __init__(self, node, LAPType, describtion, Certainty):
