@@ -5,7 +5,17 @@ from Actuators import *
 from Models import *
 import copy
 
-deleteNotImplementedMethods = str(input("Remove Not implemented methods too?(y/n): "))
+while True:
+    deleteNotImplementedMethods = str(input("Remove Not implemented methods too?(y/n): "))
+    if deleteNotImplementedMethods == 'y' or deleteNotImplementedMethods == 'n':
+        break
+    else:
+        print("((INCORRECT INPUT))")
+
+if deleteNotImplementedMethods == 'y':
+    deleteNotImplementedMethods = True
+else:
+    deleteNotImplementedMethods = False
 #we will stay at this loop till all the LAPs are eliminated.
 while True:
     sourceCodeDirectory = 'Demo.java'
@@ -89,8 +99,9 @@ while True:
     if deleteNotImplementedMethods:
     #eliminating type 5 LAPs
         if len(LapType5s) != 0:
+            print('yeeeeesss')
             for l in LapType5s:
-                removeMethod(sourceCodeDirectory, l)
+                removeMethodInPlace(sourceCodeDirectory, l)
                 break
             continue
 

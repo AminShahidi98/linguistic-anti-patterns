@@ -117,7 +117,7 @@ def renameMethodInPlace(sourceCodeDirectory, lapObject):
     with open(sourceCodeDirectory, "w") as text_file:
         text_file.write(result)
 
-def removeMethod(sourceCodeDirectory, lapObject):
+def removeMethodInPlace(sourceCodeDirectory, lapObject):
     startLine = lapObject.node.position.line
     startColumn = lapObject.node.position.column
     fileLinesList = []

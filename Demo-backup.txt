@@ -1,13 +1,12 @@
 public class Demo {
    
-    int isChecked=6;
+    static int isChecked=6;
     static int isDobed=9;
     static int[] cv = {23, 34, 533};
     int getMyFood = 3;
     
     public static void main(String[] args) {
-        System.out.print(getisDobed(2, "iuh"));
-        System.out.print("32 3g3 ");
+
     }
     private static int[] isMethode(int[] x, String m) {
         System.out.print(m);
@@ -21,10 +20,46 @@ public class Demo {
         System.out.print(star);
     }
 
+
+
+
+
+
+
+
+
+
+
+    
     public static int setisDobed(int d) {
-        isDobed *= d;
-        return isDobed;
+        isChecked = 5*6;
+        String tafdo = "hello dear!";
+        if (isChecked == 5) {
+            return 5;
+        }
+        else if (isChecked == 4) {
+            return isDobed;
+        }
+        else if (isChecked == 9) {
+            return 464;
+        }
+        else {
+            return 0;
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
     int isFalse = 1;
 
     public static void getbaaasss(String star) {

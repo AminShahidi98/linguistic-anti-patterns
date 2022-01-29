@@ -2,11 +2,28 @@ from Utils import *
 from Models import *
 from Detectors import *
 from Actuators import *
-from Core import *
+#from Core import *
 import javalang
 import inflect
 
-print(createGetMethodComplementName('public static int getisDobed(int d) {'))
+x = findMethodDeclarations('Demo.java')
+for i in x:
+    if i.name == "setisDobed":
+        statements = i.body[2].then_statement.statements
+        for s in statements:
+            if isinstance(s, javalang.tree.ReturnStatement):
+                print(s)
+
+#"<class 'javalang.tree.ReturnStatement'>"
+#"<class 'javalang.tree.IfStatement'>"
+#"<class 'javalang.tree.BlockStatement'>"           
+'''
+        for x in i.body:
+            print(x)
+            print("--------------------------------------")
+'''
+
+#print(createGetMethodComplementName('public static int getisDobed(int d) {'))
 
 '''
 a = findMethodDeclarations('Demo.java')
