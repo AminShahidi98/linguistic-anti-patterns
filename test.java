@@ -1,8 +1,8 @@
 public class test {
     public static void main(String[] args) {
-        String s1 = "ABC";
-        s1 = s1.toLowerCase();
-        if (s1.equals("abc")){
+        double s1 = 0d;
+        double s2 = 0;
+        if (s1 == s2){
             System.out.print("lower cased");
         }
     }

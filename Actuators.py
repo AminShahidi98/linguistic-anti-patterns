@@ -95,28 +95,29 @@ def createAndReplaceEditedFunction(sourceCodeDirectory, firstLine, newFunctionVi
             break
 
     if replaceReturnType:
-        newFunction = newFunction.replace(' ' + node.return_type.name, " boolean", 1)
         if len(node.return_type.dimensions) != 0:
+            newFunction = newFunction.replace(' ' + node.return_type.name + '[]', " boolean", 1)
             if node.return_type.name == 'int':
-                newFunction = newFunction + '{\n' + '    int temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+                newFunction = newFunction + '{\n' + '    int[] temp = ' + newFunctionView +';\n' + '    int size = temp.length;\n' + '    if (size == 0) {return false;}\n' + '    else if (size == 1){\n' + '        int tempInt = temp[0];\n' + "        if (tempInt == 0) {return false;}\n" + '        else {return true;}\n' + '    }\n' + '    else {return true;}\n    }'
             elif node.return_type.name == 'byte':
-                newFunction = newFunction + '{\n' + '    byte temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+                newFunction = newFunction + '{\n' + '    byte[] temp = ' + newFunctionView +';\n' + '    int size = temp.length;\n' + '    if (size == 0) {return false;}\n' + '    else if (size == 1){\n' + '        byte tempByte = temp[0];\n' + "        if (tempByte == 0) {return false;}\n" + '        else {return true;}\n' + '    }\n' + '    else {return true;}\n    }'
             elif node.return_type.name == 'short':
-                newFunction = newFunction + '{\n' + '    short temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+                newFunction = newFunction + '{\n' + '    short[] temp = ' + newFunctionView +';\n' + '    int size = temp.length;\n' + '    if (size == 0) {return false;}\n' + '    else if (size == 1){\n' + '        short tempShort = temp[0];\n' + "        if (tempShort == 0) {return false;}\n" + '        else {return true;}\n' + '    }\n' + '    else {return true;}\n    }'
             elif node.return_type.name == 'long':
-                newFunction = newFunction + '{\n' + '    long temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+                newFunction = newFunction + '{\n' + '    long[] temp = ' + newFunctionView +';\n' + '    int size = temp.length;\n' + '    if (size == 0) {return false;}\n' + '    else if (size == 1){\n' + '        long tempLong = temp[0];\n' + "        if (tempLong == 0) {return false;}\n" + '        else {return true;}\n' + '    }\n' + '    else {return true;}\n    }'
             elif node.return_type.name == 'float':
-                newFunction = newFunction + '{\n' + '    float temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+                newFunction = newFunction + '{\n' + '    float[] temp = ' + newFunctionView +';\n' + '    int size = temp.length;\n' + '    if (size == 0) {return false;}\n' + '    else if (size == 1){\n' + '        float tempFloat = temp[0];\n' + "        if (tempFloat == 0) {return false;}\n" + '        else {return true;}\n' + '    }\n' + '    else {return true;}\n    }'
             elif node.return_type.name == 'double':
-                newFunction = newFunction + '{\n' + '    double temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+                newFunction = newFunction + '{\n' + '    double[] temp = ' + newFunctionView +';\n' + '    int size = temp.length;\n' + '    if (size == 0) {return false;}\n' + '    else if (size == 1){\n' + '        double tempDouble = temp[0];\n' + "        if (tempDouble == 0) {return false;}\n" + '        else {return true;}\n' + '    }\n' + '    else {return true;}\n    }'
             elif node.return_type.name == 'char':
-                newFunction = newFunction + "{\n" + "    char temp = " + newFunctionView +";\n" + "    if (temp == 'f' || temp == 'F' || temp == '0') {return false;}\n    else {return true;}\n    }"
+                newFunction = newFunction + '{\n' + '    char[] temp = ' + newFunctionView +';\n' + '    int size = temp.length;\n' + '    if (size == 0) {return false;}\n' + '    else if (size == 1){\n' + '        char tempChar = temp[0];\n' + "        if (tempChar == '0' || tempChar == 'f' || tempChar == 'F') {return false;}\n" + '        else {return true;}\n' + '    }\n' + '    else {return true;}\n    }'
             elif node.return_type.name == 'String':
-                newFunction = newFunction + '{\n' + '    String temp = ' + newFunctionView +';\n' + '    temp = temp.toLowerCase();\n' + '    if (temp.equals("0") || temp.equals("f") || temp.equals("false") ) {return false;}\n    else {return true;}\n    }'
+                newFunction = newFunction + '{\n' + '    String[] temp = ' + newFunctionView +';\n' + '    int size = temp.length;\n' + '    if (size == 0) {return false;}\n' + '    else if (size == 1){\n' + '        String tempString = temp[0].toLowerCase();\n' + '        if (tempString.equals("0") || tempString.equals("f") || tempString.equals("false")) {return false;}\n' + '        else {return true;}\n' + '    }\n' + '    else {return true;}\n    }'
             else:
                 newFunction = newFunction + '{\n' + '    return ' + newFunctionView + ';\n' +'    }'
 
         else:
+            newFunction = newFunction.replace(' ' + node.return_type.name, " boolean", 1)
             if node.return_type.name == 'int':
                 newFunction = newFunction + '{\n' + '    int temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
             elif node.return_type.name == 'byte':

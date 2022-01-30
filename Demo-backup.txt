@@ -36,27 +36,27 @@ public class Demo {
         return isDobed;
     }
 
-    public static String isValid(int d) {
+    public static byte[] isValid(int d) {
         if (d == 5) {
-            return "false";
+            return new byte[] {23};
         }
         else if (d == 4) {
-            return "FalSe";
+            byte[] testS = {-23, 42};
+            return testS;
         }
         else if (d == 9) {
-            return "T";
+            return new byte[] {66};
         }
         else if (d == -11) {
-            return "True";
+            byte[] testS2 = {0};
+            return testS2;
         }
-        else if (d == -10) {
-            return "TRUE";
-        }
-        else if (d == -1) {
-            return "ysex";
+        else if (d == -2) {
+            byte[] testS2 = {};
+            return testS2;
         }
         else {
-            return "0";
+            return new byte[] {1};
         }
     }
 

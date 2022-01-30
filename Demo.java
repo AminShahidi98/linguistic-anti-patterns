@@ -6,7 +6,7 @@ public class Demo {
     int getMyFood = 3;
     
     public static void main(String[] args) {
-        System.out.print(isValid(78687)); 
+        System.out.print(isValid(-11)); 
     }
 
     private static int[] yesisMethode(int[] x, String m) {
@@ -14,50 +14,68 @@ public class Demo {
         return x;
     }
 
-    public static void settestpy(String star) {
-    }
 
-    public static void getMyFood(String star) {
+
+    public static void calculateForgetMyFood(String star) {
         System.out.print(star);
     }
     
     int isFalse = 1;
 
-    public static void getbaaasss(String star) {
-    }
+
 
     public static int getisDobed(int d, String star) {
-        isDobed *= d;
-        return isDobed;
+    return complement_getisDobed(d, star);
     }
 
     public static int getyourDobed(int d, String star) {
+    return complement_getyourDobed(d, star);
+    }
+
+    public static boolean isValid(int d) {
+    double[] temp = complement_isValid(d);
+    int size = temp.length;
+    if (size == 0) {return false;}
+    else if (size == 1){
+        double tempDouble = temp[0];
+        if (tempDouble == 0) {return false;}
+        else {return true;}
+    }
+    else {return true;}
+    }
+
+
+    public static int complement_getisDobed(int d, String star) {
         isDobed *= d;
         return isDobed;
     }
 
-    public static String isValid(int d) {
-        if (d == 5) {
-            return "false";
-        }
-        else if (d == 4) {
-            return "FalSe";
-        }
-        else if (d == 9) {
-            return "T";
-        }
-        else if (d == -11) {
-            return "True";
-        }
-        else if (d == -10) {
-            return "TRUE";
-        }
-        else if (d == -1) {
-            return "ysex";
-        }
-        else {
-            return "0";
-        }
+    public static int complement_getyourDobed(int d, String star) {
+        isDobed *= d;
+        return isDobed;
     }
 
+    public static double[] complement_isValid(int d) {
+        if (d == 5) {
+            return new double[] {23};
+        }
+        else if (d == 4) {
+            double[] testS = {-23, 42};
+            return testS;
+        }
+        else if (d == 9) {
+            return new double[] {66};
+        }
+        else if (d == -11) {
+            double[] testS2 = {0.0d};
+            return testS2;
+        }
+        else if (d == -2) {
+            double[] testS2 = {};
+            return testS2;
+        }
+        else {
+            return new double[] {1};
+        }
+    }
 }
