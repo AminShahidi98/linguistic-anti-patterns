@@ -96,11 +96,48 @@ def createAndReplaceEditedFunction(sourceCodeDirectory, firstLine, newFunctionVi
 
     if replaceReturnType:
         newFunction = newFunction.replace(' ' + node.return_type.name, " boolean", 1)
-        #if node.return_type.dimensions == 'int'
+        if len(node.return_type.dimensions) != 0:
+            if node.return_type.name == 'int':
+                newFunction = newFunction + '{\n' + '    int temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+            elif node.return_type.name == 'byte':
+                newFunction = newFunction + '{\n' + '    byte temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+            elif node.return_type.name == 'short':
+                newFunction = newFunction + '{\n' + '    short temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+            elif node.return_type.name == 'long':
+                newFunction = newFunction + '{\n' + '    long temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+            elif node.return_type.name == 'float':
+                newFunction = newFunction + '{\n' + '    float temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+            elif node.return_type.name == 'double':
+                newFunction = newFunction + '{\n' + '    double temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+            elif node.return_type.name == 'char':
+                newFunction = newFunction + "{\n" + "    char temp = " + newFunctionView +";\n" + "    if (temp == 'f' || temp == 'F' || temp == '0') {return false;}\n    else {return true;}\n    }"
+            elif node.return_type.name == 'String':
+                newFunction = newFunction + '{\n' + '    String temp = ' + newFunctionView +';\n' + '    temp = temp.toLowerCase();\n' + '    if (temp.equals("0") || temp.equals("f") || temp.equals("false") ) {return false;}\n    else {return true;}\n    }'
+            else:
+                newFunction = newFunction + '{\n' + '    return ' + newFunctionView + ';\n' +'    }'
 
-        newFunction = newFunction + '{\n' + 'return ' + newFunctionView + ';\n' +'}'
+        else:
+            if node.return_type.name == 'int':
+                newFunction = newFunction + '{\n' + '    int temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+            elif node.return_type.name == 'byte':
+                newFunction = newFunction + '{\n' + '    byte temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+            elif node.return_type.name == 'short':
+                newFunction = newFunction + '{\n' + '    short temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+            elif node.return_type.name == 'long':
+                newFunction = newFunction + '{\n' + '    long temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+            elif node.return_type.name == 'float':
+                newFunction = newFunction + '{\n' + '    float temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+            elif node.return_type.name == 'double':
+                newFunction = newFunction + '{\n' + '    double temp = ' + newFunctionView +';\n' + '    if (temp == 0) {return false;}\n    else {return true;}\n    }'
+            elif node.return_type.name == 'char':
+                newFunction = newFunction + "{\n" + "    char temp = " + newFunctionView +";\n" + "    if (temp == 'f' || temp == 'F' || temp == '0') {return false;}\n    else {return true;}\n    }"
+            elif node.return_type.name == 'String':
+                newFunction = newFunction + '{\n' + '    String temp = ' + newFunctionView +';\n' + '    temp = temp.toLowerCase();\n' + '    if (temp.equals("0") || temp.equals("f") || temp.equals("false") ) {return false;}\n    else {return true;}\n    }'
+            else:
+                newFunction = newFunction + '{\n' + '    return ' + newFunctionView + ';\n' +'    }'
+
     else: 
-        newFunction = newFunction + '{\n' + 'return ' + newFunctionView + ';\n' +'}'
+        newFunction = newFunction + '{\n' + '    return ' + newFunctionView + ';\n' +'    }'
     fileLinesList = []
     with open(sourceCodeDirectory) as file:
         for line in file:

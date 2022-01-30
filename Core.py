@@ -104,7 +104,7 @@ while True:
                 break
             continue
     
-     #eliminating type 2 LAPs
+    #eliminating type 2 LAPs
     if len(LapType2s) != 0:
         for l in LapType2s:
             methods = findMethodDeclarations(sourceCodeDirectory)
@@ -113,17 +113,9 @@ while True:
             tempFirstLine = tempLines[0]
             temp = createMethodComplementName(lines[0], l, methods)
             firstLine = temp[0]
-            #firstLine = firstLine.replace(l.node.return_type.name, "boolean", 1)
-            print(firstLine)
             lines[0] = firstLine
             insertMethodToTheEnd(sourceCodeDirectory, lines)
             createAndReplaceEditedFunction(sourceCodeDirectory, tempFirstLine, temp[1], l.node, tempLines, True)
-            print("**")
-            print("**")
-            print("**")
-            print("**")
-            print("**")
-            print("**")
             break
         continue   
 

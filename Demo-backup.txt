@@ -6,9 +6,10 @@ public class Demo {
     int getMyFood = 3;
     
     public static void main(String[] args) {
-
+        System.out.print(isValid(78687)); 
     }
-    private static int[] isMethode(int[] x, String m) {
+
+    private static int[] yesisMethode(int[] x, String m) {
         System.out.print(m);
         return x;
     }
@@ -35,20 +36,27 @@ public class Demo {
         return isDobed;
     }
 
-    public static int isValid(int d) {
-        isChecked = 5*6;
-        String tafdo = "hello dear!";
-        if (isChecked == 5) {
-            return 5;
+    public static String isValid(int d) {
+        if (d == 5) {
+            return "false";
         }
-        else if (isChecked == 4) {
-            return isDobed;
+        else if (d == 4) {
+            return "FalSe";
         }
-        else if (isChecked == 9) {
-            return 464;
+        else if (d == 9) {
+            return "T";
+        }
+        else if (d == -11) {
+            return "True";
+        }
+        else if (d == -10) {
+            return "TRUE";
+        }
+        else if (d == -1) {
+            return "ysex";
         }
         else {
-            return 0;
+            return "0";
         }
     }
 
