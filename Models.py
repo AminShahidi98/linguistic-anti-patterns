@@ -3,6 +3,7 @@ import enum
 pluralDataTypes = ['Array']
 singularDataTypes = ['boolean', 'char', 'byte', 'short', 'int', 'long', 'float', 'double', 'void', 'String']
 booleanSugestions = ['is', 'has', 'does', 'have', 'got', 'are', 'can', 'was', 'were']
+modifiers = ['public', 'private', 'protected', 'static']
 
 class Lap(enum.Enum):
     noLAP = 0

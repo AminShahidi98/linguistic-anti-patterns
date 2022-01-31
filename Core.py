@@ -81,7 +81,7 @@ while True:
             lines = createMethodComplement(sourceCodeDirectory, l.node)
             tempLines = copy.copy(lines)
             tempFirstLine = tempLines[0]
-            temp = createMethodComplementName(lines[0], l, methods)
+            temp = createMethodComplementName(lines[0], l, methods, False)
             firstLine = temp[0]
             lines[0] = firstLine
             insertMethodToTheEnd(sourceCodeDirectory, lines)
@@ -111,7 +111,7 @@ while True:
             lines = createMethodComplement(sourceCodeDirectory, l.node)
             tempLines = copy.copy(lines)
             tempFirstLine = tempLines[0]
-            temp = createMethodComplementName(lines[0], l, methods)
+            temp = createMethodComplementName(lines[0], l, methods, False)
             firstLine = temp[0]
             lines[0] = firstLine
             insertMethodToTheEnd(sourceCodeDirectory, lines)
@@ -119,9 +119,18 @@ while True:
             break
         continue   
 
+    #eliminating type 3 LAPs
+    if len(LapType3s) != 0:
+        for l in LapType3s:
+            methods = findMethodDeclarations(sourceCodeDirectory)
+            lines = createMethodComplement(sourceCodeDirectory, l.node)
+            resolveSetMethodeNameAndReturns(sourceCodeDirectory, l.node, lines)
+            break
+        continue
+
     if deleteNotImplementedMethods:
-        if len(LapType1s) == 0 and len(LapType7s) == 0 and len(LapType2s) == 0 and len(LapType5s) == 0:
+        if len(LapType1s) == 0 and len(LapType7s) == 0 and len(LapType2s) == 0 and len(LapType3s) == 0 and len(LapType5s) == 0:
             break
     else:
-        if len(LapType1s) == 0 and len(LapType7s) == 0 and len(LapType2s) == 0:
+        if len(LapType1s) == 0 and len(LapType7s) == 0 and len(LapType2s) == 0 and len(LapType3s) == 0:
             break

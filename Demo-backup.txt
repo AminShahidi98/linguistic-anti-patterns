@@ -4,19 +4,21 @@ public class Demo {
     static int isDobed=9;
     static int[] cv = {23, 34, 533};
     int getMyFood = 3;
+    int logFor_setMyVar;
     
     public static void main(String[] args) {
-        System.out.print(isValid(78687)); 
+        System.out.print(isValid(78687));
     }
 
-    private static int[] yesisMethode(int[] x, String m) {
+    private static int[] isMethode(int[] x, String m) {
         System.out.print(m);
         return x;
     }
 
-    public static void settestpy(String star) {
+    public static int setMyVar(int i) {
+        int test = i * 2;
+        return test;
     }
-
     public static void getMyFood(String star) {
         System.out.print(star);
     }
@@ -59,5 +61,8 @@ public class Demo {
             return new byte[] {1};
         }
     }
-
+        public static boolean[] setMyVar(int i) {
+        boolean[] test = {true, false};
+        return test;
+    }
 }

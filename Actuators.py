@@ -49,7 +49,7 @@ def createMethodComplement(sourceCodeDirectory, getMethodNode):
                     return complementCodeList
             complementCodeList.append(line)
 
-def createMethodComplementName(firstLine, lapObject, allMethodes):
+def createMethodComplementName(firstLine, lapObject, allMethodes, isSetMethode):
     spaceSeen = False
     temp = ''
     parenthesesIndex = 0
@@ -68,7 +68,10 @@ def createMethodComplementName(firstLine, lapObject, allMethodes):
                 spaceSeenCounter = 0
             else:
                 temp += firstLine[i]
-    newNameBasic = 'complement_' + lapObject.node.name
+    if isSetMethode:
+        newNameBasic = lapObject.node.name + '_andLog'
+    else:
+        newNameBasic = 'complement_' + lapObject.node.name
     newName = newNameBasic
     newNameIndex = 2
     for i in allMethodes:
@@ -209,3 +212,81 @@ def removeMethodInPlace(sourceCodeDirectory, lapObject):
     with open(sourceCodeDirectory, "w") as text_file:
         text_file.write(result)
         return 0
+
+def resolveSetMethodeNameAndReturns(sourceCodeDirectory, node, methodeCodeList):
+    usedModifiers = []
+    for m in modifiers:
+        if ' '+m+' ' in methodeCodeList[0]:
+            usedModifiers.append(m)
+
+    usedModifiersString = ''
+    for m in usedModifiers:
+        usedModifiersString += m + ' '
+
+    variableNameBase = 'logFor_' + node.name
+    variableName = variableNameBase
+    index = 2
+    #list of tuples. first member of each tuple is the name of the coresponding variable
+    allGlobalVariables = returnVariableDeclarators(sourceCodeDirectory)[0]
+    for v in allGlobalVariables:
+        if variableName == v[0]:
+            variableName = variableNameBase + '_' + str(index)
+            index += 1
+    
+    variableLine = ''
+    variableDataType = ''
+
+    if len(node.return_type.dimensions) != 0:
+        variableDataType = node.return_type.name + '[]'
+    else:
+        variableDataType = node.return_type.name
+    
+    variableLine = usedModifiersString + variableDataType + ' ' + variableName + ';'
+    newFunctionAndVariable = ''
+    
+    newFunction = ''
+    for i in methodeCodeList[0]:
+        if i != '{':
+            newFunction += i
+        else:
+            newFunction += ' {\n'
+            break  
+
+    if len(node.return_type.dimensions) != 0:
+        newFunction = newFunction.replace(' ' + node.return_type.name + '[]',' void', 1)
+    else:
+       newFunction = newFunction.replace(' ' + node.return_type.name,' void', 1)
+    
+
+    newFunctionNameBase = node.name + '_WithLog'
+    newFunctionName = newFunctionNameBase
+
+    index = 2
+    allMethods = findMethodDeclarations(sourceCodeDirectory)
+    for m in allMethods:
+        if newFunctionName == m.name:
+            newFunctionName = newFunctionNameBase + '_' + str(index)
+            index += 1
+
+    newFunction = newFunction.replace(' ' + node.name, ' ' + newFunctionName, 1)
+
+    for line in methodeCodeList[1:]:
+        newFunction = newFunction + line + '\n'
+
+    newFunctionAndVariable = '    ' + variableLine + '\n' + newFunction
+    newFunctionAndVariableList = newFunctionAndVariable.split('\n')
+    for i in range(0, len(newFunctionAndVariableList)):
+        if 'return' in newFunctionAndVariableList[i]:
+            newFunctionAndVariableList[i] = newFunctionAndVariableList[i].replace('return', ' ' + variableName + ' = ', 1)
+    newFunctionAndVariable = "\n".join(newFunctionAndVariableList[:])
+
+    fileLinesList = []
+    with open(sourceCodeDirectory) as file:
+        for line in file:
+            fileLinesList.append(line.rstrip('\n')) #Append without disturbing extra blank lines of readline() method.
+    for i in range(0, len(methodeCodeList)):
+        fileLinesList.pop(node.position.line-1)
+    fileLinesList.insert(node.position.line-1, newFunctionAndVariable)
+    result = "\n".join(fileLinesList[:])
+    with open(sourceCodeDirectory, "w") as text_file:
+        text_file.write(result)

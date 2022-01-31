@@ -6,9 +6,31 @@ from Actuators import *
 import javalang
 import inflect
 
+x = returnVariableDeclarators('Demo.java')
+for i in x[0]:
+    print(i)
+    print('***')
+print("////////////////////////////////////////////////////////////////////")
+for i in x[1]:
+    print(i)
+    print('***')
+print("////////////////////////////////////////////////////////////////////")
+print("////////////////////////////////////////////////////////////////////")
+print("////////////////////////////////////////////////////////////////////")
+x = returnVariableDeclarations('Demo.java')
+for i in x[0]:
+    print(i)
+    print('***')
+print("////////////////////////////////////////////////////////////////////")
+for i in x[1]:
+    print(i)
+    print('***')
+
+'''
 x = findMethodDeclarations('Demo.java')
 for i in x:
-    print(type(i.return_type.dimensions))
+    print(list(i.modifiers))
+    print("**********************************************")'''
 
 #"<class 'javalang.tree.ReturnStatement'>"
 #"<class 'javalang.tree.IfStatement'>"
