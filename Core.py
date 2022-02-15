@@ -17,6 +17,7 @@ if deleteNotImplementedMethods == 'y':
 else:
     deleteNotImplementedMethods = False
 #we will stay at this loop till all the LAPs are eliminated.
+countFlag = 0
 while True:
     sourceCodeDirectory = 'Demo.java'
     methods = findMethodDeclarations(sourceCodeDirectory)
@@ -41,6 +42,11 @@ while True:
     LapType12s = []
     LapType13s = []
     LapType14s = []
+
+    allVariables = returnVariableDeclarators(sourceCodeDirectory)
+    globalVariables = allVariables[0]
+    localVariables = allVariables[1]
+
 
     #In this section we create LAP objects out of node objects having LAP.
     #Store same LAPs in same lists. Lists are up.
@@ -73,7 +79,37 @@ while True:
         elif returnSetLAPType(sm) == Lap(5):
             newLap = SetMethodLAP(sm, Lap(5), 'Not implemented condition', 1)
             LapType5s.append(newLap)
-    
+
+
+    if countFlag == 0:
+        countFlag = 1
+        if deleteNotImplementedMethods:
+            LAPsCount = len(LapType1s) + len(LapType7s) + len(LapType2s) + len(LapType3s)  + len(LapType5s)
+            print("\n")
+            print("total Number of linguistic antipatterns found: " + str(LAPsCount))
+            print("\n")
+            print("------------------------------------------------")
+            print("Anti-pattern name                         | Count")
+            print("------------------------------------------------")
+            print('"Get" more than an accessor:              | ' + str(len(LapType1s)))
+            print('Get method does not return:               | ' + str(len(LapType7s)))
+            print('Is returns more than a boolean:           | ' + str(len(LapType2s)))
+            print('Set method returns:                       | ' + str(len(LapType3s)))
+            print('Not implemented method:                   | ' + str(len(LapType5s)))
+
+        else:
+            LAPsCount = len(LapType1s) + len(LapType7s) + len(LapType2s) + len(LapType3s)
+            print("\n")
+            print("total Number of linguistic antipatterns found: " + str(LAPsCount))
+            print("\n")
+            print("------------------------------------------------")
+            print("Anti-pattern name                         | Count")
+            print("------------------------------------------------")
+            print('"Get" more than an accessor:              | ' + str(len(LapType1s)))
+            print('Get method does not return:               | ' + str(len(LapType7s)))
+            print('Is returns more than a boolean:           | ' + str(len(LapType2s)))
+            print('Set method returns:                       | ' + str(len(LapType3s)))
+
     #eliminating type 1 LAPs
     if len(LapType1s) != 0:
         for l in LapType1s:
@@ -92,7 +128,7 @@ while True:
     #eliminating type 7 LAPs
     if len(LapType7s) != 0:
         for l in LapType7s:
-            renameMethodInPlace(sourceCodeDirectory, l)
+            renameMethodInPlace(sourceCodeDirectory, l, False)
             break
         continue
     
@@ -127,6 +163,7 @@ while True:
             resolveSetMethodeNameAndReturns(sourceCodeDirectory, l.node, lines)
             break
         continue
+
 
     if deleteNotImplementedMethods:
         if len(LapType1s) == 0 and len(LapType7s) == 0 and len(LapType2s) == 0 and len(LapType3s) == 0 and len(LapType5s) == 0:

@@ -1,68 +1,55 @@
 public class Demo {
    
-    static int isChecked=6;
-    static int isDobed=9;
-    static int[] cv = {23, 34, 533};
-    int getMyFood = 3;
-    int logFor_setMyVar;
+    String firstName, middleName, lastName;
+    int age, averageScore, entranceYear;
+    char sexuality;
+    boolean isGraduated;
+    static int studentsCount;
     
     public static void main(String[] args) {
-        System.out.print(isValid(78687));
+        System.out.print("Hello world");
     }
 
-    private static int[] isMethode(int[] x, String m) {
-        System.out.print(m);
-        return x;
-    }
+    public static void getStudentsCount() {
 
-    public static int setMyVar(int i) {
-        int test = i * 2;
-        return test;
-    }
-    public static void getMyFood(String star) {
-        System.out.print(star);
     }
     
-    int isFalse = 1;
-
-    public static void getbaaasss(String star) {
-    }
-
-    public static int getisDobed(int d, String star) {
-        isDobed *= d;
-        return isDobed;
-    }
-
-    public static int getyourDobed(int d, String star) {
-        isDobed *= d;
-        return isDobed;
-    }
-
-    public static byte[] isValid(int d) {
-        if (d == 5) {
-            return new byte[] {23};
-        }
-        else if (d == 4) {
-            byte[] testS = {-23, 42};
-            return testS;
-        }
-        else if (d == 9) {
-            return new byte[] {66};
-        }
-        else if (d == -11) {
-            byte[] testS2 = {0};
-            return testS2;
-        }
-        else if (d == -2) {
-            byte[] testS2 = {};
-            return testS2;
+    public int isStudentGraduated() {
+        if(isGraduated){
+            return 1;
         }
         else {
-            return new byte[] {1};
+            return 0;
         }
     }
-        public static boolean[] setMyVar(int i) {
-        boolean[] test = {true, false};
-        return test;
+
+    public void getFullName() {
+        String fullName = firstName + " " + middleName + " " + lastName;
+        System.out.print(fullName);
     }
+
+    public int getAverageScore() {
+        int tempAverageScore;
+        tempAverageScore = averageScore + 1;
+        if(tempAverageScore >= 20){
+            return 20;
+        }
+        else {
+            return tempAverageScore;
+        }
+    }
+
+    public String setGraduationStatus(int status){
+        if (status == 1){
+            isGraduated = true;
+            return "Set to true";
+        }
+        else if (status == 0){
+            isGraduated = false;
+            return "Set to false";
+        }
+        else {
+            return "Method input must be 0 or 1!";
+        }
+    }   
 }

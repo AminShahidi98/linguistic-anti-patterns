@@ -83,7 +83,8 @@ def createMethodComplementName(firstLine, lapObject, allMethodes, isSetMethode):
     for i in lapObject.node.parameters:
         newFunctionView += i.name
         newFunctionView += ', '
-    newFunctionView = newFunctionView[:len(newFunctionView)-2]
+    if len(lapObject.node.parameters) != 0:
+        newFunctionView = newFunctionView[:len(newFunctionView)-2]
     newFunctionView += ')'
     #print(firstLineComplement)#fist line of complement function
     #print(newFunctionView)#the function call we put inside new function to call complement function
@@ -153,14 +154,17 @@ def createAndReplaceEditedFunction(sourceCodeDirectory, firstLine, newFunctionVi
     with open(sourceCodeDirectory, "w") as text_file:
         text_file.write(result)
 
-def renameMethodInPlace(sourceCodeDirectory, lapObject):
+def renameMethodInPlace(sourceCodeDirectory, lapObject, type4LAP):
     startLine = lapObject.node.position.line
     fileLinesList = []
     with open(sourceCodeDirectory) as file:
         for line in file:
             fileLinesList.append(line.rstrip('\n')) #Append without disturbing extra blank lines of readline() method.
     result = "\n".join(fileLinesList[:])
-    newMethodName = "calculateFor" + lapObject.node.name + '('
+    if type4LAP:
+        newMethodName = "calculateFor" + lapObject.node.name + '('
+    else:
+        newMethodName = "calculateFor" + lapObject.node.name + '('
     result = result.replace(lapObject.node.name + '(', newMethodName)
     with open(sourceCodeDirectory, "w") as text_file:
         text_file.write(result)

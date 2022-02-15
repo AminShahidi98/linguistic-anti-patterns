@@ -6,32 +6,6 @@ from Actuators import *
 import javalang
 import inflect
 
-x = returnVariableDeclarators('Demo.java')
-for i in x[0]:
-    print(i)
-    print('***')
-print("////////////////////////////////////////////////////////////////////")
-for i in x[1]:
-    print(i)
-    print('***')
-print("////////////////////////////////////////////////////////////////////")
-print("////////////////////////////////////////////////////////////////////")
-print("////////////////////////////////////////////////////////////////////")
-x = returnVariableDeclarations('Demo.java')
-for i in x[0]:
-    print(i)
-    print('***')
-print("////////////////////////////////////////////////////////////////////")
-for i in x[1]:
-    print(i)
-    print('***')
-
-'''
-x = findMethodDeclarations('Demo.java')
-for i in x:
-    print(list(i.modifiers))
-    print("**********************************************")'''
-
 #"<class 'javalang.tree.ReturnStatement'>"
 #"<class 'javalang.tree.IfStatement'>"
 #"<class 'javalang.tree.BlockStatement'>"           
@@ -59,7 +33,7 @@ print("*************************************************")
 '''
 a = findMethodDeclarations('Demo.java')
 for x in a:
-    print(x.position)
+    print(x.position.column)
     print('********************************************')
 '''
 
@@ -69,12 +43,17 @@ for x in a:
 test=['public static int testTestTest(int x) {', 'return x;', '}']
 a = insertMethodToTheEnd('Demo.java', test)
 '''
-'''
+
 tree = parse('Demo.java')
+
 for path, node in tree:
+    print(type(node))
     print(node)
+    print("//////")
+    print(node.children)
     print('************************************************************************************************')
-'''
+
+
 '''
 f = open('Demo.java', 'r')
 for i in f:

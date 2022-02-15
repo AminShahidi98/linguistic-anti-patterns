@@ -5,16 +5,15 @@ import javalang
 def returnGetLAPType(node):
     if len(node.body) == 0:
         return Lap(5)
-    elif len(node.body) == 1:
-        if type(node.body[0]) == javalang.tree.ReturnStatement:
-            pass
-        else:
-            return Lap(7)
-    elif len(node.body) > 1:
-        for i in node.body:
-            if type(i) == javalang.tree.ReturnStatement:
-                return(Lap(1))
+    if node.return_type.name == 'void':
         return Lap(7)
+    if len(node.body) > 1:
+        return Lap(1)
+    elif len(node.body) == 1:
+        if str(type(node.body[0])) == "<class 'javalang.tree.IfStatement'>":
+            return Lap(1)
+        else:
+            return Lap(0)
     return Lap(0)
 
 def returnIsLAPType(node):
@@ -34,9 +33,8 @@ def returnIsLAPType(node):
 def returnSetLAPType(node):
     if len(node.body) == 0:
         return Lap(5)
-    for i in node.body:
-        if type(i) == javalang.tree.ReturnStatement:
-            return Lap(3)
+    if node.return_type.name != 'void':
+        return Lap(3)
     return Lap(0)
 
 def returnIfType4LAP(node):
@@ -47,12 +45,12 @@ def returnIfType4LAP(node):
         return Lap(0)
     else:
         if keyNoun in singularDataTypes:
-            if node.return_type.name in pluralDataTypes:
+            if len(node.return_type.dimensions) != 0:
                 return Lap(4)
             else:
                 return Lap(0)
         else:
-            if node.return_type.name in pluralDataTypes:
+            if len(node.return_type.dimensions) != 0:
                 return Lap(4)
             else:
                 return Lap(0)
@@ -67,17 +65,17 @@ def returnIfType12or14LAP(parentNode, node):
     nodeSplitedName = separateStringToWords(node.name)
     lastIndex = len(nodeSplitedName) - 1
     if isPlural(nodeSplitedName[lastIndex]):
-        if parentNode.type.name in pluralDataTypes:
+        if len(parentNode.type.dimensions)!=0:
             return Lap(0)
         else:
             return Lap(14)
     elif not isPlural(nodeSplitedName[lastIndex]):
-        if parentNode.type.name in pluralDataTypes:
+        if len(parentNode.type.dimensions)!=0:
             return Lap(12)
         else:
             return Lap(0)
     elif nodeSplitedName[lastIndex].lower() in ['list', 'array', 'set', 'tuple']:
-        if parentNode.type.name in pluralDataTypes:
+        if len(parentNode.type.dimensions)!=0:
             return Lap(0)
         else:
             return Lap(14)

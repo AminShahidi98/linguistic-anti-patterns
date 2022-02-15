@@ -73,12 +73,12 @@ def returnVariableDeclarators(sourceCodeDirectory):
     tree = parse(sourceCodeDirectory)
     for path, node in tree.filter(javalang.tree.FieldDeclaration):
         for p,  v in node.filter(javalang.tree.VariableDeclarator):
-            globalVariablesList.append((v.name, node.position.line, node.type.name, 'global'))
+            globalVariablesList.append((v.name, node.position.line, node.type.name, 'global', node))
     
     tree = parse(sourceCodeDirectory)
     for path, node in tree.filter(javalang.tree.LocalVariableDeclaration):
         for p, v in node.filter(javalang.tree.VariableDeclarator):
-            localVariablesList.append((v.name, node.position.line, node.type.name, 'local'))
+            localVariablesList.append((v.name, node.position.line, node.type.name, 'local', node))
     return (globalVariablesList, localVariablesList)
 
 def returnVariableDeclarations(sourceCodeDirectory):
