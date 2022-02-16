@@ -20,15 +20,19 @@ else:
 countFlag = 0
 while True:
     sourceCodeDirectory = 'Demo.java'
+    #sourceCodeDirectory = "Test-Source-Codes/AbstractDataSourceTest.java"
     methods = findMethodDeclarations(sourceCodeDirectory)
     getMethods = []
     setMethods = []
     isMethods = []
     for m in methods:
+        #if returnGetMethodSmell(m) == 'getMethod' or returnGetMethodSmell(m) == 'maybeGetMethod':
         if returnGetMethodSmell(m) == 'getMethod':
             getMethods.append(m)
+        #if returnSetMethodSmell(m) == 'setMethod' or returnSetMethodSmell(m) == 'maybeSetMethod':
         if returnSetMethodSmell(m) == 'setMethod':
             setMethods.append(m)
+        #if returnIsMethodSmell(m) == 'isMethod' or returnIsMethodSmell(m) == 'maybeIsMethod':
         if returnIsMethodSmell(m) == 'isMethod':
             isMethods.append(m)
 
@@ -79,6 +83,12 @@ while True:
         elif returnSetLAPType(sm) == Lap(5):
             newLap = SetMethodLAP(sm, Lap(5), 'Not implemented condition', 1)
             LapType5s.append(newLap)
+    
+    for m in methods:
+        if m.body != None:
+            if len(m.body) == 0:
+                newLap = (m, Lap(5), 'Not implemented condition', 1)
+                LapType5s.append(newLap)
 
 
     if countFlag == 0:
@@ -109,7 +119,7 @@ while True:
             print('Get method does not return:               | ' + str(len(LapType7s)))
             print('Is returns more than a boolean:           | ' + str(len(LapType2s)))
             print('Set method returns:                       | ' + str(len(LapType3s)))
-
+            
     #eliminating type 1 LAPs
     if len(LapType1s) != 0:
         for l in LapType1s:

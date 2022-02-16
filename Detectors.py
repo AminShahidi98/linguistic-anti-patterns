@@ -3,6 +3,9 @@ from Models import *
 import javalang
 
 def returnGetLAPType(node):
+    if node.body == None:
+        #It's an abstract method.
+        return Lap(0)
     if len(node.body) == 0:
         return Lap(5)
     if node.return_type.name == 'void':
@@ -17,6 +20,9 @@ def returnGetLAPType(node):
     return Lap(0)
 
 def returnIsLAPType(node):
+    if node.body == None:
+        #It's an abstract method.
+        return Lap(0)
     flag = 0
     if len(node.body) == 0:
         return Lap(5)
@@ -31,6 +37,9 @@ def returnIsLAPType(node):
     return Lap(0)
 
 def returnSetLAPType(node):
+    if node.body == None:
+        #It's an abstract method.
+        return Lap(0)
     if len(node.body) == 0:
         return Lap(5)
     if node.return_type.name != 'void':
